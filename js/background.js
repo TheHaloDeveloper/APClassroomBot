@@ -15,8 +15,25 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                             answers.push(`${all[answers.length]}. ${text}`);
                         }
 
-                        console.log(question);
-                        console.log(answers);
+                        prompt = `
+                        You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the correct answer. 
+                        ######
+                        QUESTION:
+                        ${question}
+                        ####
+                        ANSWERS:
+                        ${answers.join("\n")}
+                        `;
+
+                        fetch('http://localhost:5000/api', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({prompt: prompt})
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data.res);
+                        });
                     }, 5000);
                 },
             });

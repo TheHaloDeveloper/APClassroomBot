@@ -6,10 +6,7 @@
     "action": {},
     "permissions": [
         "tabs",
-        "activeTab",
-        "scripting",
-        "storage",
-        "webRequest"
+        "scripting"
     ],
     "host_permissions": [
         "https://*.collegeboard.org/*"

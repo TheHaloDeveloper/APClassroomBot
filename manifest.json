@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "ap classroom",
+    "version": "1.0",
+    "description": "vigilante hacker_",
+    "action": {},
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "scripting",
+        "storage",
+        "webRequest"
+    ],
+    "host_permissions": [],
+    "icons": {
+        "128": "assets/icon.png"
+    },
+    "background": {
+        "service_worker": "js/background.js"
+    }
+}

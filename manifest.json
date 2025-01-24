@@ -11,7 +11,9 @@
         "storage",
         "webRequest"
     ],
-    "host_permissions": [],
+    "host_permissions": [
+        "https://*.collegeboard.org/*"
+    ],
     "icons": {
         "128": "assets/icon.png"
     },

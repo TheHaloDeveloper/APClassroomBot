@@ -16,7 +16,7 @@ function call() {
             
             let elems = document.getElementsByClassName("bluebook-popover");
             let num = parseInt(elems[elems.length - 1].children[0].children[0].children[1].children[0].children[1].textContent.split(" of")[0]);
-            let main = document.getElementsByClassName("learnosity-item")[num - 1].children[0].children[0].children[0].children[1].children[0];
+            let main = document.getElementsByClassName("learnosity-item")[num - 1].getElementsByClassName("lrn_clearfix")[0];
 
             let question = main.children[1].children[0].children[0].textContent;
             let answers = [];

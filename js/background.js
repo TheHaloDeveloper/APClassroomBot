@@ -30,7 +30,8 @@ function call() {
             console.log(answers);
 
             let prompt = `
-            You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the correct answer. If there are no correct answers, pick the best option - you must always answer the question.
+            You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the BEST option given. You should also output one of three colors: Green, Yellow, or Orange. Green means you are 99% confident that you are correct, yellow means that you are pretty sure, and red means you don't know and you're picking the best option.
+            Output examples: A - Green, E - Yellow, D - Red
             ######
             QUESTION:
             ${question}

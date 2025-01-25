@@ -16,9 +16,8 @@ function call() {
             
             let elems = document.getElementsByClassName("bluebook-popover");
             let num = parseInt(elems[elems.length - 1].children[0].children[0].children[1].children[0].children[1].textContent.split(" of")[0]);
-            console.log(num);
 
-            let question = document.getElementsByClassName("lrn_stimulus_content")[0].textContent;
+            let question = document.getElementsByClassName("learnosity-item")[num - 1].children[0].children[0].children[0].children[1].children[0].children[1].children[0].children[0].textContent;
             let answers = [];
 
             for (let answer of document.getElementsByClassName("lrn_mcqgroup")[0].children) {
@@ -26,11 +25,11 @@ function call() {
                 answers.push(`${all[answers.length]}. ${text}`);
             }
 
-            console.log(question)
+            console.log(question);
             console.log(answers);
 
             let prompt = `
-            You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the correct answer. 
+            You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the correct answer. If there are no correct answers, pick the best option - you must always answer the question.
             ######
             QUESTION:
             ${question}

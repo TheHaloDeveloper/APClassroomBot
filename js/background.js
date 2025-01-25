@@ -21,7 +21,8 @@ function call() {
             let question = main.children[1].children[0].children[0].textContent;
             let answers = [];
 
-            for (let answer of main.children[2].children[0].children[2].children[0].children[0].children) {
+            let ul = main.children[2].children[0].children[2].children[0].children[0];
+            for (let answer of ul.children) {
                 let text = answer.getElementsByClassName("lrn-label")[0].textContent.split("Option ")[0];
                 answers.push(`${all[answers.length]}. ${text}`);
             }
@@ -47,7 +48,8 @@ function call() {
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data.res);
+                let parts = data.res.split(" - ");
+                ul.children[all.indexOf(parts[0])].style.backgroundColor = `${parts[1].toLowerCase()}`;
             });
         }
     });

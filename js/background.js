@@ -16,11 +16,12 @@ function call() {
             
             let elems = document.getElementsByClassName("bluebook-popover");
             let num = parseInt(elems[elems.length - 1].children[0].children[0].children[1].children[0].children[1].textContent.split(" of")[0]);
+            let main = document.getElementsByClassName("learnosity-item")[num - 1].children[0].children[0].children[0].children[1].children[0];
 
-            let question = document.getElementsByClassName("learnosity-item")[num - 1].children[0].children[0].children[0].children[1].children[0].children[1].children[0].children[0].textContent;
+            let question = main.children[1].children[0].children[0].textContent;
             let answers = [];
 
-            for (let answer of document.getElementsByClassName("lrn_mcqgroup")[0].children) {
+            for (let answer of main.children[2].children[0].children[2].children[0].children[0].children) {
                 let text = answer.getElementsByClassName("lrn-label")[0].textContent.split("Option ")[0];
                 answers.push(`${all[answers.length]}. ${text}`);
             }

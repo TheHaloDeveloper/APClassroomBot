@@ -41,6 +41,12 @@ function call() {
             ${answers.join("\n")}
             `;
 
+            let color_maps = {
+                "Green": "rgb(160, 242, 201)",
+                "Yellow": "rgb(246, 255, 166)",
+                "Red": "rgb(255, 136, 125)"
+            }
+
             fetch('http://localhost:5000/api', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -48,8 +54,8 @@ function call() {
             })
             .then(response => response.json())
             .then(data => {
-                let parts = data.res.split(" - ");
-                ul.children[all.indexOf(parts[0])].style.backgroundColor = `${parts[1].toLowerCase()}`;
+                let parts = data.res.trim().split(" - ");
+                ul.children[all.indexOf(parts[0])].style.backgroundColor = `${color_maps[parts[1]]}`;
             });
         }
     });

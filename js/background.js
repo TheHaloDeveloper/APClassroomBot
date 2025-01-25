@@ -13,13 +13,16 @@ function call() {
     document.addEventListener('keydown', function(event) {
         if (event.key === '`') {
             let all = "ABCDE";
+            
+            let elems = document.getElementsByClassName("bluebook-popover");
+            let num = parseInt(elems[elems.length - 1].children[0].children[0].children[1].children[0].children[1].textContent.split(" of")[0]);
+            console.log(num);
+
             let question = document.getElementsByClassName("lrn_stimulus_content")[0].textContent;
             let answers = [];
-            
-            let elems = document.getElementsByClassName("lrn_mcqgroup");
 
-            for (let answer of elems[elems.length - 2].children) {
-                let text = answer.children[1].children[0].children[0].children[0].children[0].children[0].children[0].textContent;
+            for (let answer of document.getElementsByClassName("lrn_mcqgroup")[0].children) {
+                let text = answer.getElementsByClassName("lrn-label")[0].textContent.split("Option ")[0];
                 answers.push(`${all[answers.length]}. ${text}`);
             }
 

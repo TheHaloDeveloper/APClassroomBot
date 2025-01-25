@@ -27,9 +27,6 @@ function call() {
                 answers.push(`${all[answers.length]}. ${text}`);
             }
 
-            console.log(question);
-            console.log(answers);
-
             let prompt = `
             You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the BEST option given. You should also output one of three colors: Green, Yellow, or Orange. Green means you are 99% confident that you are correct, yellow means that you are pretty sure, and red means you don't know and you're picking the best option.
             Output examples: A - Green, E - Yellow, D - Red
@@ -55,7 +52,12 @@ function call() {
             .then(response => response.json())
             .then(data => {
                 let parts = data.res.trim().split(" - ");
-                ul.children[all.indexOf(parts[0])].style.backgroundColor = `${color_maps[parts[1]]}`;
+                let elem = ul.children[all.indexOf(parts[0])];
+                elem.style.backgroundColor = `${color_maps[parts[1]]}`;
+                
+                setTimeout(function() {
+                    elem.style.backgroundColor = "unset";
+                }, 500)
             });
         }
     });

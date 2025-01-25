@@ -35,14 +35,57 @@ function call() {
                 }
     
                 let prompt = `
-                You will be given a question below, along with multiple choice answers. Your job is to output one singular letter, for the BEST option given. You should also output one of three colors: Green, Yellow, or Orange. Green means you are 99% confident that you are correct, yellow means that you are pretty sure, and red means you don't know and you're picking the best option.
-                Output examples: A - Green, E - Yellow, D - Red
-                ######
-                QUESTION:
-                ${question}
-                ####
-                ANSWERS:
-                ${answers.join("\n")}
+You will be given a multiple-choice question about computer science. Your task is to:
+- Carefully evaluate the code and choose the correct answer.
+- Provide a confidence level using the colors:
+  - Green: 99% confidence
+  - Yellow: Pretty sure, but not 100% confident
+  - Orange: Not sure, but based on the analysis, the best answer.
+- Use the given answer format below, with a hyphen between the letter and your confidence level respresented by a color.
+RESPOND ONLY WITH THE ANSWER FORMAT REQUESTED, NO EXPLANATION.
+
+Here are a few examples of how to approach these types of questions:
+
+Example 1:
+Question:
+Consider the following code:
+int x = 5;
+x *= 2;
+System.out.println(x);
+
+What is printed?
+Options:
+A. 5
+B. 10
+C. 15
+D. 2
+
+B - Green
+
+
+Example 2:
+Question:
+Consider the following code:
+int a = 7;
+a += 3;
+System.out.println(a);
+
+What is printed?
+Options:
+A. 7
+B. 3
+C. 10
+D. 17
+
+C - Green
+
+Now, here is the current question:
+######
+QUESTION:
+${question.replaceAll(";", ";\n")}
+####
+ANSWERS:
+${answers.join("\n")}
                 `;
     
                 fetch('http://localhost:5000/api', {
@@ -52,7 +95,7 @@ function call() {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    let parts = data.res.trim().split(" - ");
+                    let parts = data.res.trim().replaceAll("\n", "").replaceAll("*", "").split(" - ");
                     let elem = ul.children[all.indexOf(parts[0])];
                     elem.style.backgroundColor = `${color_maps[parts[1]]}`;
                     

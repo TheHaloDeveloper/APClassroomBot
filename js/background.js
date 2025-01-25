@@ -105,7 +105,7 @@ function call() {
     ${answers.join("\n")}
                     `;
         
-                    fetch('http://localhost:5000/api', {
+                    fetch('https://ai-server-lilac.vercel.app/api', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({prompt: prompt})
